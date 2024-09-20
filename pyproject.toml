@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "olisipo"
+version = "1.0.0"
+description = "Simple local password manager"
+authors = ["rodrigoar <rodrigorar.dev@gmail.com>"]
+license = "Apache License 2"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
