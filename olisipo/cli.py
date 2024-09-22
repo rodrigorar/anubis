@@ -31,9 +31,13 @@ class CLI(cmd.Cmd):
         return True
 
 
-if __name__ == "__main__":
+def main():
     CLI(Operations(
         repository=repository_provider(),
         password_provider=lambda: getpass("Password>> "),
         encryption_engine=EncryptionEngine()
     )).cmdloop()
+
+
+if __name__ == "__main__":
+    main()

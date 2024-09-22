@@ -6,6 +6,10 @@ authors = ["rodrigoar <rodrigorar.dev@gmail.com>"]
 license = "Apache License 2"
 readme = "README.md"
 
+[tool.poetry.scripts]
+start="olisipo.cli:main"
+test="pytest:main"
+
 [tool.poetry.dependencies]
 python = "^3.12"
 cryptography = "^43.0.1"
