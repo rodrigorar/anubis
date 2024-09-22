@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from olisipo.encryption import encrypt_entry
+from olisipo.encryption import EncryptionEngine
 
 
 class TestEncryptionDecryption(TestCase):
@@ -9,7 +9,8 @@ class TestEncryptionDecryption(TestCase):
         test_password = "test_password"
         test_entry = "test_entry"
 
-        result = encrypt_entry(test_entry, test_password)
+        under_test = EncryptionEngine()
+        result = under_test.encrypt(test_entry, test_password)
 
         self.assertIsNotNone(result)
         self.assertNotEqual(test_entry, test_password)
@@ -19,8 +20,9 @@ class TestEncryptionDecryption(TestCase):
         test_password_2 = "test_password_2"
         test_entry = "test_entry"
 
-        result_1 = encrypt_entry(test_entry, test_password_1)
-        result_2 = encrypt_entry(test_entry, test_password_2)
+        under_test = EncryptionEngine()
+        result_1 = under_test.encrypt(test_entry, test_password_1)
+        result_2 = under_test.encrypt(test_entry, test_password_2)
 
         self.assertIsNotNone(result_1)
         self.assertIsNotNone(result_2)
@@ -32,8 +34,9 @@ class TestEncryptionDecryption(TestCase):
         test_password = "test_password"
         test_entry = "test_entry"
 
-        encrypted_value = encrypt_entry(test_entry, test_password)
-        decrypted_value = encrypt_entry(encrypted_value, test_password)
+        under_test = EncryptionEngine()
+        encrypted_value = under_test.encrypt(test_entry, test_password)
+        decrypted_value = under_test.encrypt(encrypted_value, test_password)
 
         self.assertNotEqual(test_entry, decrypted_value)
 
@@ -42,7 +45,8 @@ class TestEncryptionDecryption(TestCase):
         test_password_2 = "test_password_2"
         test_entry = "test_entry"
 
-        encrypted_value = encrypt_entry(test_entry, test_password_1)
-        decrypted_value = encrypt_entry(encrypted_value, test_password_2)
+        under_test = EncryptionEngine()
+        encrypted_value = under_test.encrypt(test_entry, test_password_1)
+        decrypted_value = under_test.encrypt(encrypted_value, test_password_2)
 
         self.assertNotEqual(test_entry, decrypted_value)
