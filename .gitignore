@@ -1,7 +1,8 @@
 # Python
 
-**/dist/*
+**/dist*
+**/__pycache__*
 
 # IntelliJ
 
-**.idea/*
+**/.idea*
