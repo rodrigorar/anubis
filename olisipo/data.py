@@ -1,3 +1,5 @@
+import json
+import os
 from dataclasses import dataclass
 from typing import Any
 
@@ -20,18 +22,46 @@ class Repository:
         ...
 
 
-class InMemoryPasswordRepository(Repository):
-    database = {}
+class JsonRepository(Repository):
+    DATABASE = "database.json"
+
+    def __init__(self):
+        if not os.path.exists(self.DATABASE):
+            print("File does not exist, creating")
+            with open(self.DATABASE, 'w') as f:
+                f.write("")
+
+    def load_database(self, file):
+        return json.loads(file.read()) if os.stat(self.DATABASE).st_size != 0 else {}
 
     def save(self, entity: Secret):
-        self.database[entity.name] = entity
+        with open(self.DATABASE, 'r+') as db:
+            data = self.load_database(db)
+
+            data[entity.name] = entity.value
+
+            db.seek(0) # Rewrite the entire file
+            db.truncate()
+
+            json.dump(data, db)
 
     def get(self, entity_id: str) -> Secret:
-        return self.database.get(entity_id)
+        with open(self.DATABASE) as db:
+            data = self.load_database(db)
+            result = Secret(entity_id, data.get(entity_id, ""))
+        return result
 
     def delete(self, entity_id):
-        self.database.pop(entity_id, None)
+        with open(self.DATABASE, 'r+') as db:
+            data = self.load_database(db)
 
+            if data.get(entity_id) is not None:
+                del data[entity_id]
+
+            db.seek(0)  # Rewrite the entire file
+            db.truncate()
+
+            json.dump(data, db if db is not None else {})
 
 def repository_provider() -> Repository:
-    return InMemoryPasswordRepository()
+    return JsonRepository()
