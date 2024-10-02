@@ -30,6 +30,9 @@ class Operations:
             print("No value returned from the repository")
         return Secret(secret_id, decrypted_value)
 
+    def list_entries(self):
+        return self.repository.list()
+
     def remove_entry(self, secret_id: str) -> None:
         assert secret_id, "No secret id has been provided"
 

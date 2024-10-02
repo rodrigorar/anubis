@@ -18,6 +18,9 @@ class Repository:
     def get(self, entity_id: str) -> Any:
         ...
 
+    def list(self):
+        ...
+
     def delete(self, entity_id: str) -> None:
         ...
 
@@ -49,6 +52,12 @@ class JsonRepository(Repository):
         with open(self.DATABASE) as db:
             data = self.load_database(db)
             result = Secret(entity_id, data.get(entity_id, ""))
+        return result
+
+    def list(self):
+        with open(self.DATABASE) as db:
+            data = self.load_database(db)
+            result = data.keys()
         return result
 
     def delete(self, entity_id):

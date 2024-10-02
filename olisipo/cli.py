@@ -30,6 +30,12 @@ class CLI(cmd.Cmd):
         except:
             print('Failed to fetch secret')
 
+    def do_list(self, line):
+        'List all stored secret keys'
+
+        entry_keys = self.operations.list_entries()
+        [print(entry_key) for entry_key in entry_keys]
+
     def do_remove(self, line):
         'Remove entry with (remove <entry-name>)'
 

@@ -1,3 +1,4 @@
+from os import times
 from unittest import TestCase, expectedFailure
 from unittest.mock import Mock
 
@@ -74,6 +75,50 @@ class TestGetEntry(TestCase):
             password_provider=mocked_password_provider
         )
         self.assertRaises(AssertionError, lambda: under_test.get_entry(secret_id=None))
+
+
+class TestListEntries(TestCase):
+
+    def test_should_succeed_list_entries(self):
+        db_result = [
+            Secret(name="test_entry_1", value="encrypted_entry_1"),
+            Secret(name="test_entry_2", value="encrypted_entry_2"),
+            Secret(name="test_entry_3", value="encrypted_entry_3")
+        ]
+
+        mocked_repository = Mock()
+        mocked_repository.list = Mock(return_value=db_result)
+        mocked_encryption_engine = Mock()
+        mocked_password_provider = Mock(return_value="password_value")
+
+        under_test = Operations(
+            repository=mocked_repository,
+            encryption_engine=mocked_encryption_engine,
+            password_provider=mocked_password_provider
+        )
+        result = under_test.list_entries()
+
+        self.assertEqual(len(result), len(db_result))
+
+        mocked_repository.list.assert_called_once()
+
+    def test_should_succeed_empty_list(self):
+        mocked_repository = Mock()
+        mocked_repository.list = Mock(return_value=[])
+        mocked_encryption_engine = Mock()
+        mocked_password_provider = Mock(return_value="password_value")
+
+        under_test = Operations(
+            repository=mocked_repository,
+            encryption_engine=mocked_encryption_engine,
+            password_provider=mocked_password_provider
+        )
+        result = under_test.list_entries()
+
+        self.assertTrue(len(result) == 0)
+
+        mocked_repository.list.assert_called_once()
+
 
 
 class TestRemoveEntry(TestCase):
