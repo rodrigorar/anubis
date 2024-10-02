@@ -33,7 +33,10 @@ class CLI(cmd.Cmd):
     def do_remove(self, line):
         'Remove entry with (remove <entry-name>)'
 
-        self.operations.remove_entry(line)
+        try:
+            self.operations.remove_entry(line)
+        except:
+            print('No permissions to remove secret')
 
     @staticmethod
     def do_q(line):
