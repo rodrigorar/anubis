@@ -69,6 +69,7 @@ jobs:
         mkdir release
         mv olisipo*.whl release/
         mv olisipo/bin/installer.sh release/
+        mv olisipo/bin/olisipo.sh release/
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
