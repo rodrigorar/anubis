@@ -74,4 +74,4 @@ jobs:
         name: Olisipo-${{ env.VERSION }}
         path: ./olisipo-"${{ env.VERSION }}".zip
         if-no-files-found: error
-          retention-days: 1
+        retention-days: 1
