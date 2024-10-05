@@ -68,10 +68,13 @@ jobs:
         VERSION=$(cat pyproject.toml | grep version | awk '{ print $3 }')
         echo "VERSION=$(cat pyproject.toml | grep version | awk '{ print $3 }')" >> $GITHUB_ENV
         zip olisipo-"$VERSION".zip olisipo*.whl olisipo/bin/installer.sh
+        ls
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
         name: Olisipo-${{ env.VERSION }}
         path: ./olisipo-"${{ env.VERSION }}".zip
+        run: |
+          ls
         if-no-files-found: error
         retention-days: 1
