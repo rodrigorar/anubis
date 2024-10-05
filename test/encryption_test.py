@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from olisipo.encryption import EncryptionEngine
+from olisipo.core.encryption import EncryptionEngine
 
 
 class TestEncryptionDecryption(TestCase):

@@ -1,5 +1,5 @@
-from olisipo.data import Secret, repository_provider, Repository
-from olisipo.encryption import EncryptionEngine
+from olisipo.core.data import Secret, Repository
+from olisipo.core.encryption import EncryptionEngine
 
 class Operations:
 

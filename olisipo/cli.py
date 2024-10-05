@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
+
 import cmd
 from getpass import getpass
 
-from olisipo.data import repository_provider, Repository, Secret
-from olisipo.encryption import EncryptionEngine
-from olisipo.operations import Operations
+from olisipo.core.data import repository_provider, Secret
+from olisipo.core.encryption import EncryptionEngine
+from olisipo.core.operations import Operations
 
 
 class CLI(cmd.Cmd):

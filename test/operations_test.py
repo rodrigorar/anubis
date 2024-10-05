@@ -1,9 +1,8 @@
-from os import times
-from unittest import TestCase, expectedFailure
+from unittest import TestCase
 from unittest.mock import Mock
 
-from olisipo.data import Secret
-from olisipo.operations import Operations
+from olisipo.core.data import Secret
+from olisipo.core.operations import Operations
 
 
 class TestAddEntry(TestCase):
