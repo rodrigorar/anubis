@@ -66,11 +66,13 @@ jobs:
     - name: Package
       run: |
         echo "VERSION=$(cat pyproject.toml | grep version | awk '{ print $3 }' | tr -d '"')" >> $GITHUB_ENV
-        zip olisipo-${{ env.VERSION }}.zip olisipo*.whl olisipo/bin/installer.sh
+        mkdir release
+        mv olisipo*.whl release/
+        mv olisipo/bin/installer.sh release/
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.2
       with:
-        name: Olisipo
-        path: ./olisipo-*.zip
+        name: Olisipo-${{ env.VERSION }}
+        path: ./release
         if-no-files-found: error
         retention-days: 1
