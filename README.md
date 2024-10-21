@@ -34,3 +34,8 @@ Show help menu
 ### `q`
 
 Exit the application
+
+## Contributing
+
+If you wish to contribute to this project, fork the repository, add any new feature 
+you want and create a PR for this repo, and i'll check it out! :) 
