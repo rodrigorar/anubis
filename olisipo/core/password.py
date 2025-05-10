@@ -28,7 +28,7 @@ class PasswordProvider:
 
     def get_password(self) -> str:
         if not self.password_repository.get():
-            self.password_repository.save(getpass("Password>> "))
+            self.password_repository.save(getpass("Password >>> "))
         return self.password_repository.get()
 
 def password_repository_provider() -> Repository:

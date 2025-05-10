@@ -23,8 +23,8 @@ class CLI(cmd.Cmd):
     def do_add(self, line):
         'Add new secret with (add <entry-name> <entry-secret>)'
 
-        split_input = line.split()
-        self.operations.add_entry(Secret(name=split_input[0], value=split_input[1]))
+        secret_name = line
+        self.operations.add_entry(Secret(name=secret_name, value=getpass("Secret >>> ")))
 
     def do_get(self, line):
         'Get secret with (get <entry-name>)'
