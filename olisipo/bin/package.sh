@@ -12,3 +12,5 @@ rm "olisipo-$version/olisipo/bin/package.sh"
 rm "olisipo-$version/olisipo/bin/package_wrapper.py"
 
 tar -cf "olisipo-$version.tar.gz" "olisipo-$version"
+
+rm -r "olisipo-$version"
