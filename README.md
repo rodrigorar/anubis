@@ -18,9 +18,9 @@ and the application should launch.
 
 ## Commands
 
-### `add <entry_key> <entry_value>`
+### `add <entry_key>`
 
-Add secret with **key** \<entry_key\> and **value** \<entry_value\> to the
+Add secret with **key** \<entry_key\> and **value** which you will be asked for after running the command, to the
 existing secrets datastore or **replace** and existing secret with the new value. 
 
 ### `get <entry_key>`
