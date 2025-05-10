@@ -3,6 +3,8 @@
 import cmd
 from getpass import getpass
 
+import clipboard
+
 from olisipo.core.data import repository_provider, Secret
 from olisipo.core.encryption import EncryptionEngine
 from olisipo.core.operations import Operations
@@ -27,9 +29,10 @@ class CLI(cmd.Cmd):
         'Get secret with (get <entry-name>)'
 
         try:
-            secret_value = self.operations.get_entry(secret_id=line)
-            print(secret_value.value)
-        except:
+            secret_value: Secret = self.operations.get_entry(secret_id=line)
+            clipboard.copy(secret_value.value)
+        except Exception as e:
+            print(e)
             print('Failed to fetch secret')
 
     def do_list(self, line):
@@ -43,7 +46,8 @@ class CLI(cmd.Cmd):
 
         try:
             self.operations.remove_entry(line)
-        except:
+        except Exception as e:
+            print(e)
             print('No permissions to remove secret')
 
     @staticmethod
