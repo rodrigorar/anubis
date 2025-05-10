@@ -12,7 +12,8 @@ class TestAddEntry(TestCase):
         mocked_repository.save = Mock(return_value=None)
         mocked_encryption_engine = Mock()
         mocked_encryption_engine.encrypt = Mock(return_value="encrypted-value")
-        mocked_password_provider = Mock(return_value="password-value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository = mocked_repository,
@@ -23,12 +24,13 @@ class TestAddEntry(TestCase):
 
         mocked_repository.save.assert_called_once()
         mocked_encryption_engine.encrypt.assert_called_once()
-        mocked_password_provider.assert_called_once()
+        mocked_password_provider.get_password.assert_called_once()
 
     def test_should_fail_null_entry(self):
         mocked_repository = Mock()
         mocked_encryption_engine = Mock()
-        mocked_password_provider = Mock(return_value="password-value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository=mocked_repository,
@@ -47,7 +49,8 @@ class TestGetEntry(TestCase):
         mocked_repository.get = Mock(return_value=db_result)
         mocked_encryption_engine = Mock()
         mocked_encryption_engine.decrypt = Mock(return_value="decrypted_value")
-        mocked_password_provider = Mock(return_value="password_value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository=mocked_repository,
@@ -61,12 +64,13 @@ class TestGetEntry(TestCase):
 
         mocked_repository.get.assert_called_once()
         mocked_encryption_engine.decrypt.assert_called_once()
-        mocked_password_provider.assert_called_once()
+        mocked_password_provider.get_password.assert_called_once()
 
     def test_should_succeed_null_entry(self):
         mocked_repository = Mock()
         mocked_encryption_engine = Mock()
-        mocked_password_provider = Mock(return_value="password_value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository=mocked_repository,
@@ -88,7 +92,8 @@ class TestListEntries(TestCase):
         mocked_repository = Mock()
         mocked_repository.list = Mock(return_value=db_result)
         mocked_encryption_engine = Mock()
-        mocked_password_provider = Mock(return_value="password_value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository=mocked_repository,
@@ -105,7 +110,8 @@ class TestListEntries(TestCase):
         mocked_repository = Mock()
         mocked_repository.list = Mock(return_value=[])
         mocked_encryption_engine = Mock()
-        mocked_password_provider = Mock(return_value="password_value")
+        mocked_password_provider = Mock()
+        mocked_password_provider.get_password = Mock(return_value="password-value")
 
         under_test = Operations(
             repository=mocked_repository,

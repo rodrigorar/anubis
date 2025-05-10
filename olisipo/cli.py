@@ -60,7 +60,7 @@ class CLI(cmd.Cmd):
 def main():
     CLI(Operations(
         repository=repository_provider(),
-        password_provider=PasswordProvider(password_repository_provider()),
+        password_provider=PasswordProvider(password_repository_provider(), lambda: getpass("Password >>> ")),
         encryption_engine=EncryptionEngine()
     )).cmdloop()
 
