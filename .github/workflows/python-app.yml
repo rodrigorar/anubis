@@ -46,7 +46,7 @@ jobs:
     - name: Build
       run: |
         poetry build
-    - uses: actions/upload-artifact@master
+    - uses: actions/upload-artifact@v4
       with:
         name: olisipo-dist
         path: ./dist/
@@ -60,7 +60,7 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: "3.12"
-    - uses: actions/download-artifact@v3.1.2
+    - uses: actions/download-artifact@v4
       with:
         name: olisipo-dist
     - name: Package
@@ -68,7 +68,7 @@ jobs:
         echo "VERSION=$(cat pyproject.toml | grep version | awk '{ print $3 }' | tr -d '"')" >> $GITHUB_ENV
         poetry run package
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.2
+      uses: actions/upload-artifact@v4
       with:
         name: Olisipo-${{ env.VERSION }}
         path: ./olisipo-${{ env.VERSINO }}.tar.gz
