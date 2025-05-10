@@ -1,5 +1,5 @@
 
-OLISIPO_VERSION="1.0.0"
+OLISIPO_VERSION="1.1.0"
 OLISIPO_EXEC_LOCATION="/usr/local/bin"
 OLISIPO_EXEC="olisipo.sh"
 
