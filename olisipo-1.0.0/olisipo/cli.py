@@ -5,7 +5,6 @@ from getpass import getpass
 
 import clipboard
 
-from olisipo.core.password import PasswordProvider, password_repository_provider
 from olisipo.core.secrets import repository_provider, Secret
 from olisipo.core.encryption import EncryptionEngine
 from olisipo.core.operations import Operations
@@ -32,9 +31,9 @@ class CLI(cmd.Cmd):
         try:
             secret_value: Secret = self.operations.get_entry(secret_id=line)
             clipboard.copy(secret_value.value)
-            print("The secret has been copied to your clipboard!")
         except Exception as e:
             print(e)
+            print('Failed to fetch secret')
 
     def do_list(self, line):
         'List all stored secret keys'
@@ -49,6 +48,7 @@ class CLI(cmd.Cmd):
             self.operations.remove_entry(line)
         except Exception as e:
             print(e)
+            print('No permissions to remove secret')
 
     @staticmethod
     def do_q(line):
@@ -60,7 +60,7 @@ class CLI(cmd.Cmd):
 def main():
     CLI(Operations(
         repository=repository_provider(),
-        password_provider=PasswordProvider(password_repository_provider()),
+        password_provider=lambda: getpass("Password>> "),
         encryption_engine=EncryptionEngine()
     )).cmdloop()
 

@@ -1,4 +1,3 @@
-from olisipo.core.password import PasswordProvider
 from olisipo.core.secrets import Secret, Repository
 from olisipo.core.encryption import EncryptionEngine
 
@@ -7,17 +6,17 @@ class Operations:
     def __init__(
             self,
             repository: Repository,
-            password_provider: PasswordProvider,
+            password_provider,
             encryption_engine: EncryptionEngine
     ):
         self.repository = repository
-        self.password_provider = password_provider
+        self.get_password = password_provider
         self.encryption_engine = encryption_engine
 
     def add_entry(self, secret: Secret) -> None:
         assert secret, "No secret value has been provided"
 
-        encrypted_value = self.encryption_engine.encrypt(secret.value, self.password_provider.get_password())
+        encrypted_value = self.encryption_engine.encrypt(secret.value, self.get_password())
         self.repository.save(Secret(name=secret.name, value=encrypted_value))
 
     def get_entry(self, secret_id: str) -> Secret | None:
@@ -26,7 +25,7 @@ class Operations:
         result = self.repository.get(secret_id)
         decrypted_value = None
         if result:
-            decrypted_value = self.encryption_engine.decrypt(result.value, self.password_provider.get_password())
+            decrypted_value = self.encryption_engine.decrypt(result.value, self.get_password())
         else:
             print("No value returned from the repository")
         return Secret(secret_id, decrypted_value)
@@ -39,5 +38,5 @@ class Operations:
 
         secret = self.repository.get(secret_id)
         if secret:
-            decrypted_value = self.encryption_engine.decrypt(secret.value, self.password_provider.get_password())
+            decrypted_value = self.encryption_engine.decrypt(secret.value, self.get_password())
             self.repository.delete(secret_id)
