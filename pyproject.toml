@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "olisipo"
+name = "anubis"
 version = "1.1.0"
 description = "Simple local password manager"
 authors = ["rodrigoar <rodrigorar.dev@gmail.com>"]
@@ -7,9 +7,9 @@ license = "Apache License 2"
 readme = "README.md"
 
 [tool.poetry.scripts]
-start="olisipo.cli:main"
+start="anubis.cli:main"
 test="pytest:main"
-package="olisipo.bin.package_wrapper:main"
+package="anubis.bin.package_wrapper:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"

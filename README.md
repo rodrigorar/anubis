@@ -1,6 +1,6 @@
-# Olisipo
+# Anubis
 
-[![Olisipo Password Manager](https://github.com/rodrigorar/olisipo/actions/workflows/python-app.yml/badge.svg)](https://github.com/rodrigorar/olisipo/actions/workflows/python-app.yml)
+[![Anubis Password Manager](https://github.com/rodrigorar/anubis/actions/workflows/python-app.yml/badge.svg)](https://github.com/rodrigorar/anubis/actions/workflows/python-app.yml)
 
 ## Description
 
@@ -8,12 +8,12 @@ A simple local terminal based secrets manager.
 
 ## Installation
 
-1. Download the latest version from here https://github.com/rodrigorar/olisipo/releases
-2. Unpack the Olisipo-x.x.x.zip
+1. Download the latest version from here https://github.com/rodrigorar/anubis/releases
+2. Unpack the Anubis-x.x.x.zip
 3. Run this command `chmod +x installer.sh`
 4. Run this command `./installer.sh`
 5. Insert the request password
-6. Congratulations you now have installed olisipo, in order to run it just use `olisipo.sh` in your terminal
+6. Congratulations you now have installed Anubis, in order to run it just use `olisipo.sh` in your terminal
 and the application should launch. 
 
 ## Commands

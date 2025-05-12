@@ -1,6 +1,6 @@
-from olisipo.core.password import PasswordProvider
-from olisipo.core.secrets import Secret, Repository
-from olisipo.core.encryption import EncryptionEngine
+from anubis.core.password import PasswordProvider
+from anubis.core.secrets import Secret, Repository
+from anubis.core.encryption import EncryptionEngine
 
 class Operations:
 

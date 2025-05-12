@@ -5,15 +5,15 @@ from getpass import getpass
 
 import clipboard
 
-from olisipo.core.password import PasswordProvider, password_repository_provider
-from olisipo.core.secrets import repository_provider, Secret
-from olisipo.core.encryption import EncryptionEngine
-from olisipo.core.operations import Operations
+from anubis.core.password import PasswordProvider, password_repository_provider
+from anubis.core.secrets import repository_provider, Secret
+from anubis.core.encryption import EncryptionEngine
+from anubis.core.operations import Operations
 
 
 class CLI(cmd.Cmd):
     prompt = ">> "
-    intro = "Hello, welcome to Olisipo, a local simple secrets manager"
+    intro = "Hello, welcome to Anubis, a local simple secrets manager"
 
     def __init__(self, operations: Operations):
         super().__init__()

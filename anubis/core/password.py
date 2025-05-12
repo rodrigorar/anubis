@@ -1,4 +1,4 @@
-from olisipo.core.shared import Repository
+from anubis.core.shared import Repository
 
 
 class PasswordRepository(Repository):

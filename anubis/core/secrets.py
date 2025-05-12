@@ -3,7 +3,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
-from olisipo.core.shared import Repository
+from anubis.core.shared import Repository
 
 
 @dataclass
@@ -16,12 +16,12 @@ class Secret:
 
 
 class JsonRepository(Repository):
-    DATABASE_LOCATION = Path.home()/".olisipo"
+    DATABASE_LOCATION = Path.home()/".anubis"
     DATABASE = DATABASE_LOCATION/"database.json"
 
     def __init__(self):
         if not os.path.exists(self.DATABASE_LOCATION):
-            print("Olisipo working doesn't exist, creating")
+            print("Anubis working doesn't exist, creating")
             os.mkdir(self.DATABASE_LOCATION)
         if not os.path.exists(self.DATABASE):
             print("File does not exist, creating")

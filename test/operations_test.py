@@ -1,8 +1,8 @@
 from unittest import TestCase
 from unittest.mock import Mock
 
-from olisipo.core.secrets import Secret
-from olisipo.core.operations import Operations
+from anubis.core.secrets import Secret
+from anubis.core.operations import Operations
 
 
 class TestAddEntry(TestCase):

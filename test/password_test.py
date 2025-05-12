@@ -1,7 +1,7 @@
 from unittest import TestCase
 from unittest.mock import Mock, patch
 
-from olisipo.core.password import PasswordProvider
+from anubis.core.password import PasswordProvider
 
 
 class TestPasswordProviderGetPassword(TestCase):
