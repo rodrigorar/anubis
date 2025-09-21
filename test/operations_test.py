@@ -1,5 +1,8 @@
+from logging import raiseExceptions
 from unittest import TestCase
 from unittest.mock import Mock
+
+from cryptography.fernet import InvalidToken
 
 from anubis.core.secrets import Secret
 from anubis.core.operations import Operations
@@ -79,6 +82,7 @@ class TestGetEntry(TestCase):
         )
         self.assertRaises(AssertionError, lambda: under_test.get_entry(secret_id=None))
 
+    # TODO: Test wrong password use case
 
 class TestListEntries(TestCase):
 

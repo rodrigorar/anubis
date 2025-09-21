@@ -13,11 +13,12 @@ package="anubis.bin.package_wrapper:main"
 
 [tool.poetry.dependencies]
 python = "^3.12"
-cryptography = "^43.0.1"
-clipboard = "^0.0.4"
+cryptography = "46.0.1"
+clipboard = "0.0.4"
+jproperties = "2.1.2"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.3.3"
+pytest = "8.3.3"
 
 [build-system]
 requires = ["poetry-core"]

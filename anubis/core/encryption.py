@@ -23,12 +23,13 @@ def derive_key_from_password(password: str):
 
 class EncryptionEngine:
 
-    def encrypt(self, entry: str, password: str) -> str:
+    @staticmethod
+    def encrypt(entry: str, password: str) -> str:
         fernet = Fernet(derive_key_from_password(password))
         encrypted_entry = fernet.encrypt(entry.encode('UTF-8'))
         return encrypted_entry.decode("UTF-8")
 
-
-    def decrypt(self, entry: str, password: str):
+    @staticmethod
+    def decrypt(entry: str, password: str):
         fernet = Fernet(derive_key_from_password(password))
         return fernet.decrypt(entry.encode("UTF-8")).decode()

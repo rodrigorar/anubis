@@ -4,11 +4,13 @@ import cmd
 from getpass import getpass
 
 import clipboard
+from cryptography.hazmat.primitives.twofactor import InvalidToken
 
 from anubis.core.password import PasswordProvider, password_repository_provider
-from anubis.core.secrets import repository_provider, Secret
+from anubis.core.secrets import Secret
 from anubis.core.encryption import EncryptionEngine
 from anubis.core.operations import Operations
+from anubis.infrastructure.secrets_adapters import repository_provider
 
 
 class CLI(cmd.Cmd):

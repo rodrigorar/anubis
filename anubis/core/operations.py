@@ -1,3 +1,5 @@
+from cryptography.fernet import InvalidToken
+
 from anubis.core.password import PasswordProvider
 from anubis.core.secrets import Secret, Repository
 from anubis.core.encryption import EncryptionEngine
@@ -26,7 +28,11 @@ class Operations:
         result = self.repository.get(secret_id)
         decrypted_value = None
         if result:
-            decrypted_value = self.encryption_engine.decrypt(result.value, self.password_provider.get_password())
+            try:
+                decrypted_value = self.encryption_engine.decrypt(result.value, self.password_provider.get_password())
+            except InvalidToken:
+                self.password_provider.clear_password()
+                return self.get_entry(secret_id)
         else:
             print("No value returned from the repository")
         return Secret(secret_id, decrypted_value)
