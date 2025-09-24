@@ -1,8 +1,5 @@
-from logging import raiseExceptions
 from unittest import TestCase
 from unittest.mock import Mock
-
-from cryptography.fernet import InvalidToken
 
 from anubis.core.secrets import Secret
 from anubis.core.operations import Operations
@@ -49,7 +46,7 @@ class TestGetEntry(TestCase):
     def test_should_succeed_get_new_entry(self):
         db_result = Secret(name="test-name", value="encrypted_value")
         mocked_repository = Mock()
-        mocked_repository.get = Mock(return_value=db_result)
+        mocked_repository.get_by_id = Mock(return_value=db_result)
         mocked_encryption_engine = Mock()
         mocked_encryption_engine.decrypt = Mock(return_value="decrypted_value")
         mocked_password_provider = Mock()
@@ -65,7 +62,7 @@ class TestGetEntry(TestCase):
         self.assertEqual(result.name, db_result.name)
         self.assertEqual(result.value, "decrypted_value")
 
-        mocked_repository.get.assert_called_once()
+        mocked_repository.get_by_id.assert_called_once()
         mocked_encryption_engine.decrypt.assert_called_once()
         mocked_password_provider.get_password.assert_called_once()
 

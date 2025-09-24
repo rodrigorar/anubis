@@ -25,7 +25,7 @@ class Operations:
     def get_entry(self, secret_id: str) -> Secret | None:
         assert secret_id, "Not secret id has been provided"
 
-        result = self.repository.get(secret_id)
+        result = self.repository.get_by_id(secret_id)
         decrypted_value = None
         if result:
             try:
@@ -43,7 +43,7 @@ class Operations:
     def remove_entry(self, secret_id: str) -> None:
         assert secret_id, "No secret id has been provided"
 
-        secret = self.repository.get(secret_id)
+        secret = self.repository.get_by_id(secret_id)
         if secret:
             decrypted_value = self.encryption_engine.decrypt(secret.value, self.password_provider.get_password())
             self.repository.delete(secret_id)

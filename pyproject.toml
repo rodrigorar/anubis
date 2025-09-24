@@ -7,7 +7,7 @@ license = "Apache License 2"
 readme = "README.md"
 
 [tool.poetry.scripts]
-start="anubis.cli:main"
+start="anubis.app:main"
 test="pytest:main"
 package="anubis.bin.package_wrapper:main"
 

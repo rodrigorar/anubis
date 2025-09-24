@@ -4,13 +4,13 @@ import cmd
 from getpass import getpass
 
 import clipboard
-from cryptography.hazmat.primitives.twofactor import InvalidToken
 
-from anubis.core.password import PasswordProvider, password_repository_provider
+from anubis.adapters.password import password_repository_provider
+from anubis.core.password import PasswordProvider
 from anubis.core.secrets import Secret
 from anubis.core.encryption import EncryptionEngine
 from anubis.core.operations import Operations
-from anubis.infrastructure.secrets_adapters import repository_provider
+from anubis.adapters.secrets import repository_provider
 
 
 class CLI(cmd.Cmd):
@@ -59,13 +59,9 @@ class CLI(cmd.Cmd):
         return True
 
 
-def main():
+def launch_cli():
     CLI(Operations(
         repository=repository_provider(),
         password_provider=PasswordProvider(password_repository_provider(), lambda: getpass("Password >>> ")),
         encryption_engine=EncryptionEngine()
     )).cmdloop()
-
-
-if __name__ == "__main__":
-    main()

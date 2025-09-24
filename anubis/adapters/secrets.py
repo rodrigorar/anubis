@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 from anubis.core.secrets import SecretsRepository, Secret
-from anubis.infrastructure.configurations import AnubisConfigs
+from anubis.adapters.configurations import AnubisConfigs
 
 
 class JsonSecretsRepository(SecretsRepository):
@@ -39,7 +39,7 @@ class JsonSecretsRepository(SecretsRepository):
 
             json.dump(data, db)
 
-    def get(self, entity_id: str) -> Secret:
+    def get_by_id(self, entity_id: str) -> Secret:
         with open(self.DATABASE) as db:
             data = self.load_database(db)
             result = Secret(entity_id, data.get(entity_id, ""))

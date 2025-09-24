@@ -4,7 +4,7 @@ class Repository:
     def save(self, entity: Any) -> Any:
         raise NotImplementedError("Repository#save is not implemented")
 
-    def get(self, entity_id: str) -> Any:
+    def get_by_id(self, entity_id: str) -> Any:
         raise NotImplementedError("Repository#get is not implemented")
 
     def list(self):
