@@ -56,6 +56,7 @@ def secret_window(operations: Operations, secrets_list: Listbox):
 
 def add_secret_window(operations: Operations):
     window = tkinter.Toplevel()
+    center_window(window=window)
 
     frame = Frame(window)
     frame.pack(fill="both", padx=5, pady=5)
